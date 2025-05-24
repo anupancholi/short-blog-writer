@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request
 from langchain_openai import OpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+from langchain_core.runnables import RunnableSequence
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -26,8 +26,8 @@ def generate():
     # Setup prompt and chain
     prompt = PromptTemplate.from_template("Generate a blog on title {title}?")
     llm = OpenAI(temperature=0.4, api_key=openai_key)
-    chain = LLMChain(llm=llm, prompt=prompt)
-    output = chain.run({'title': user_input})
+    chain = prompt | llm
+    output = chain.invoke({'title': user_input})
 
     return output
 
