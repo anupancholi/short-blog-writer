@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request
 from langchain_openai import OpenAI
 from langchain.prompts import PromptTemplate
-from langchain_core.runnables import RunnableSequence
+# from langchain_core.runnables import RunnableSequence
 from dotenv import load_dotenv
 load_dotenv()
 
