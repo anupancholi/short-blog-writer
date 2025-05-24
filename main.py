@@ -32,4 +32,5 @@ def generate():
     return output
 
 
-app.run(host='0.0.0.0', port=81)
+port = int(os.environ.get("PORT", 81))
+app.run(host='0.0.0.0', port=port)
